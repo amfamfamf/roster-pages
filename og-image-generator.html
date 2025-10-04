@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grave OG Image Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        
+        .instructions {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .instructions h1 {
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            line-height: 1.8;
+            margin-left: 20px;
+        }
+        
+        .preview-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .preview-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        #ogImage {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preview-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        
+        .icon {
+            font-size: 180px;
+            margin-bottom: 40px;
+            animation: float 3s ease-in-out infinite;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .title {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .subtitle {
+            font-size: 36px;
+            font-weight: 500;
+            text-align: center;
+            opacity: 0.95;
+            max-width: 900px;
+            line-height: 1.4;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .badge {
+            position: absolute;
+            bottom: 50px;
+            background: rgba(0,0,0,0.3);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 24px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+        
+        .controls {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0 10px;
+            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
+        }
+        
+        .note {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h1>🪦 Grave OG Image Generator</h1>
+        <p>Create a beautiful Open Graph image for iMessage link previews:</p>
+        <ol>
+            <li>Customize the text below if needed</li>
+            <li>Click "Download Image" to save as PNG</li>
+            <li>Save the file as <code>og-image.png</code></li>
+            <li>Upload it to your website root directory</li>
+            <li>Test by sharing your profile link in iMessage!</li>
+        </ol>
+    </div>
+    
+    <div class="preview-container">
+        <div class="preview-label">Preview (1200x630px - iMessage/Social Media Size)</div>
+        <div class="preview-wrapper">
+            <div id="ogImage">
+                <div class="icon">🪦</div>
+                <div class="title">Check out my graveyard!</div>
+                <div class="subtitle">Download Grave to see my dating fails<br>and start tracking yours</div>
+                <div class="badge">🏆 Grave App</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="downloadImage()">📥 Download Image</button>
+            <button onclick="copyToClipboard()">📋 Copy to Clipboard</button>
+        </div>
+        
+        <div class="note">
+            <strong>📌 Pro Tip:</strong> After uploading, test your link with <a href="https://developers.facebook.com/tools/debug/" target="_blank">Facebook's Debugger</a> to verify the image loads correctly. iMessage uses similar technology to fetch previews.
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        async function downloadImage() {
+            const element = document.getElementById('ogImage');
+            
+            try {
+                const canvas = await html2canvas(element, {
+                    width: 1200,
+                    height: 630,
+                    scale: 2, // High quality
+                    backgroundColor: null
+                });
+                
+                // Convert to blob and download
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'og-image.png';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    alert('✅ Image downloaded! Save it as "og-image.png" and upload to your website root.');
+                }, 'image/png');
+            } catch (error) {
+                console.error('Error generating image:', error);
+                alert('❌ Error generating image. Please try again or take a screenshot instead.');
+            }
+        }
+        
+        async function copyToClipboard() {
+            const element = document.getElementById('ogImage');
+            
+            try {
+                const canvas = await html2canvas(element, {
+                    width: 1200,
+                    height: 630,
+                    scale: 2,
+                    backgroundColor: null
+                });
+                
+                canvas.toBlob(async function(blob) {
+                    try {
+                        await navigator.clipboard.write([
+                            new ClipboardItem({ 'image/png': blob })
+                        ]);
+                        alert('✅ Image copied to clipboard! Paste it into your image editor.');
+                    } catch (err) {
+                        alert('❌ Could not copy to clipboard. Please use the Download button instead.');
+                    }
+                }, 'image/png');
+            } catch (error) {
+                console.error('Error copying image:', error);
+                alert('❌ Error copying image. Please try the Download button instead.');
+            }
+        }
+    </script>
+</body>
+</html>
+

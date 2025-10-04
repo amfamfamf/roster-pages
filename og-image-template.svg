@@ -1,0 +1,48 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#grad1)"/>
+  
+  <!-- Main Content -->
+  <g transform="translate(600, 315)">
+    <!-- Emoji -->
+    <text x="0" y="-120" font-size="160" text-anchor="middle" filter="url(#shadow)">🪦</text>
+    
+    <!-- Title -->
+    <text x="0" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+          font-size="64" font-weight="800" fill="white" text-anchor="middle" filter="url(#shadow)">
+      Check out my graveyard!
+    </text>
+    
+    <!-- Subtitle Line 1 -->
+    <text x="0" y="90" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+          font-size="32" font-weight="500" fill="white" text-anchor="middle" opacity="0.95" filter="url(#shadow)">
+      Download Grave to see my dating fails
+    </text>
+    
+    <!-- Subtitle Line 2 -->
+    <text x="0" y="135" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+          font-size="32" font-weight="500" fill="white" text-anchor="middle" opacity="0.95" filter="url(#shadow)">
+      and start tracking yours
+    </text>
+  </g>
+  
+  <!-- Badge at bottom -->
+  <g transform="translate(600, 555)">
+    <rect x="-100" y="-25" width="200" height="50" rx="25" fill="rgba(0,0,0,0.3)" filter="url(#shadow)"/>
+    <text x="0" y="8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+          font-size="24" font-weight="600" fill="white" text-anchor="middle">
+      🏆 Grave App
+    </text>
+  </g>
+</svg>
+

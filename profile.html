@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Check out my dating graveyard on Grave 🪦</title>
+    <meta name="description" content="View my dating graveyard profile on Grave. Download the app to track your own dates and compete on the leaderboard!">
+    
+    <!-- Open Graph / Facebook / iMessage -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://graveapp.org/">
+    <meta property="og:title" content="Check out my dating graveyard 🪦">
+    <meta property="og:description" content="I'm tracking my dates on Grave. Download the app to see my full graveyard and start tracking yours!">
+    <meta property="og:image" content="https://graveapp.org/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://graveapp.org/">
+    <meta property="twitter:title" content="Check out my dating graveyard 🪦">
+    <meta property="twitter:description" content="I'm tracking my dates on Grave. Download the app to see my full graveyard and start tracking yours!">
+    <meta property="twitter:image" content="https://graveapp.org/og-image.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 60px 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .emoji {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-weight: 700;
+        }
+        
+        p {
+            font-size: 1.2em;
+            color: #4a5568;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2em;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(118, 75, 162, 0.5);
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            border-radius: 27px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+            opacity: 0.9;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.95em;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 600px) {
+            .card {
+                padding: 40px 30px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="app-icon">🪦</div>
+        <h1>Check out my graveyard!</h1>
+        <p>Download Grave to see my full dating graveyard and start tracking your own dates. Compete on the leaderboard and share your stories!</p>
+        <a href="https://apps.apple.com/app/id6753152159" class="download-btn" id="downloadBtn">
+            Download Grave
+        </a>
+    </div>
+    
+    <footer>
+        <a href="https://graveapp.org/privacy">Privacy</a>
+        <a href="https://graveapp.org/support">Support</a>
+    </footer>
+    
+    <script>
+        // Extract user ID from URL path
+        const path = window.location.pathname;
+        const userId = path.split('/')[2];
+        
+        console.log('Profile page for user:', userId);
+        
+        // Try to open the app with deep link
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            // Construct the app deep link
+            const appURL = `graveapp://profile/${userId}`;
+            const universalLink = `https://graveapp.org/profile/${userId}`;
+            
+            // Try universal link first (works if app is installed)
+            window.location.href = universalLink;
+            
+            // Fallback to App Store after delay
+            setTimeout(() => {
+                window.location.href = 'https://apps.apple.com/app/id6753152159';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
+

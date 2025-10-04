@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Grave - Dating Graveyard App</title>
+    <meta name="description" content="Track your dating graveyard. See who's winning. Share your fails with friends on the ultimate dating leaderboard.">
+    
+    <!-- Open Graph / Facebook / iMessage -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://graveapp.org/">
+    <meta property="og:title" content="Grave - Dating Graveyard App 🪦">
+    <meta property="og:description" content="Track your dates, compete on the leaderboard, and share your dating stories. Who has the biggest graveyard?">
+    <meta property="og:image" content="https://graveapp.org/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://graveapp.org/">
+    <meta property="twitter:title" content="Grave - Dating Graveyard App 🪦">
+    <meta property="twitter:description" content="Track your dates, compete on the leaderboard, and share your dating stories. Who has the biggest graveyard?">
+    <meta property="twitter:image" content="https://graveapp.org/og-image.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .emoji {
+            font-size: 6em;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        h1 {
+            font-size: 4em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: black;
+            color: white;
+            padding: 18px 50px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2em;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        
+        .features {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        
+        .feature {
+            background: rgba(255,255,255,0.15);
+            padding: 25px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-emoji {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .feature h3 {
+            font-size: 1.3em;
+            margin-bottom: 8px;
+        }
+        
+        .feature p {
+            opacity: 0.9;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: white;
+            opacity: 0.8;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+            
+            .tagline {
+                font-size: 1.2em;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="emoji">🪦</div>
+            <h1>Grave</h1>
+            <p class="tagline">Track your dating graveyard.<br>See who's winning.</p>
+            <a href="https://apps.apple.com/app/id6753152159" class="download-btn" id="downloadBtn">
+                Download on the App Store
+            </a>
+            
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-emoji">📊</span>
+                    <h3>Track Dates</h3>
+                    <p>Log your dating adventures and see them pile up.</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-emoji">🏆</span>
+                    <h3>Leaderboard</h3>
+                    <p>Compete with friends. Who has the biggest graveyard?</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-emoji">💬</span>
+                    <h3>Share Stories</h3>
+                    <p>Post updates and react to your friends' dating fails.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <a href="https://grave.app/privacy">Privacy Policy</a>
+        <a href="https://grave.app/support">Support</a>
+    </footer>
+    
+    <script>
+        // Auto-redirect to App Store on iOS devices
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            // Give universal links a moment to trigger, then redirect
+            setTimeout(() => {
+                window.location.href = 'https://apps.apple.com/app/id6753152159';
+            }, 500);
+        }
+        
+        // Handle profile deep links
+        const path = window.location.pathname;
+        if (path.startsWith('/profile/')) {
+            const userId = path.split('/')[2];
+            console.log('Profile page for user:', userId);
+            
+            // Try to open the app with universal link
+            // If app is not installed, fall back to App Store
+            window.location.href = `https://grave.app/profile/${userId}`;
+            
+            // Fallback after delay
+            setTimeout(() => {
+                document.getElementById('downloadBtn').textContent = 'Download to View Profile';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
+
+
