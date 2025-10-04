@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Check out my dating graveyard on Grave 🪦</title>
+    <meta name="description" content="View my dating graveyard profile on Grave. Download the app to track your own dates and compete on the leaderboard!">
+    
+    <!-- Open Graph / Facebook / iMessage -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://graveapp.org/">
+    <meta property="og:title" content="Check out my dating graveyard 🪦">
+    <meta property="og:description" content="I'm tracking my dates on Grave. Download the app to see my full graveyard and start tracking yours!">
+    <meta property="og:image" content="https://graveapp.org/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Grave">
+    <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://graveapp.org/">
+    <meta property="twitter:title" content="Check out my dating graveyard 🪦">
+    <meta property="twitter:description" content="I'm tracking my dates on Grave. Download the app to see my full graveyard and start tracking yours!">
+    <meta property="twitter:image" content="https://graveapp.org/og-image.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 60px 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .app-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        
+        p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 48px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        
+        footer {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 600px) {
+            .card {
+                padding: 40px 30px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            p {
+                font-size: 16px;
+            }
+            
+            .app-icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="app-icon">🪦</div>
+        <h1>Check out my graveyard!</h1>
+        <p>Download Grave to see my full dating graveyard and start tracking your own dates. Compete on the leaderboard and share your stories!</p>
+        <a href="https://apps.apple.com/app/id6753152159" class="download-btn" id="downloadBtn">
+            Download Grave
+        </a>
+    </div>
+    
+    <footer>
+        <a href="https://graveapp.org/privacy">Privacy</a>
+        <a href="https://graveapp.org/support">Support</a>
+    </footer>
+    
+    <script>
+        // Extract user ID from URL path
+        const path = window.location.pathname;
+        const pathParts = path.split('/').filter(p => p);
+        
+        // Check if this is a profile URL
+        if (pathParts[0] === 'profile' && pathParts[1]) {
+            const userId = pathParts[1];
+            console.log('Profile page for user:', userId);
+            
+            // Try to open the app with deep link
+            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                // Construct the universal link
+                const universalLink = `https://graveapp.org/profile/${userId}`;
+                
+                // Try universal link first (works if app is installed)
+                window.location.href = universalLink;
+                
+                // Fallback to App Store after delay
+                setTimeout(() => {
+                    window.location.href = 'https://apps.apple.com/app/id6753152159';
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>
+
