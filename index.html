@@ -210,14 +210,14 @@
             const userId = path.split('/')[2];
             console.log('Profile page for user:', userId);
             
-            // Try to open the app with universal link
-            // If app is not installed, fall back to App Store
-            window.location.href = `https://grave.app/profile/${userId}`;
-            
-            // Fallback after delay
-            setTimeout(() => {
-                document.getElementById('downloadBtn').textContent = 'Download to View Profile';
-            }, 1000);
+            // On iOS, try to open the app with universal link
+            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                // Universal link will try to open the app
+                // If app is not installed, user stays on page and sees download button
+                setTimeout(() => {
+                    document.getElementById('downloadBtn').textContent = 'Download to View Profile';
+                }, 1000);
+            }
         }
     </script>
 </body>
