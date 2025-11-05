@@ -44,7 +44,7 @@
             padding: 20px;
         }
         
-        .card {
+        .redirect-container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 24px;
             padding: 60px 40px;
@@ -53,49 +53,6 @@
             text-align: center;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             backdrop-filter: blur(10px);
-        }
-        
-        .emoji {
-            font-size: 5em;
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            color: #2d3748;
-            font-weight: 700;
-        }
-        
-        p {
-            font-size: 1.2em;
-            color: #4a5568;
-            margin-bottom: 35px;
-            line-height: 1.6;
-        }
-        
-        .download-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 18px 45px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.2em;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.4);
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(118, 75, 162, 0.5);
         }
         
         .app-icon {
@@ -109,6 +66,64 @@
             justify-content: center;
             font-size: 4em;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-weight: 700;
+        }
+        
+        p {
+            font-size: 1.1em;
+            color: #4a5568;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            margin: 20px auto;
+            border: 4px solid rgba(102, 126, 234, 0.2);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.4);
+            margin-top: 10px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(118, 75, 162, 0.5);
+        }
+        
+        .manual-link {
+            display: none;
+            margin-top: 20px;
         }
         
         footer {
@@ -130,28 +145,32 @@
         }
         
         @media (max-width: 600px) {
-            .card {
+            .redirect-container {
                 padding: 40px 30px;
             }
             
             h1 {
-                font-size: 2em;
+                font-size: 1.8em;
             }
             
             p {
-                font-size: 1.1em;
+                font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
-    <div class="card">
+    <div class="redirect-container">
         <div class="app-icon">🪦</div>
-        <h1>Check out my Roster!</h1>
-        <p>Download Roster to see my dates!</p>
-        <a href="https://apps.apple.com/app/id6753152159" class="download-btn" id="downloadBtn">
-            Download Roster: dating tracker
-        </a>
+        <h1 id="status-title">Opening Roster...</h1>
+        <div class="spinner"></div>
+        <p id="status-message">Redirecting you to the app</p>
+        <div class="manual-link" id="manualLink">
+            <p>Didn't redirect automatically?</p>
+            <a href="https://apps.apple.com/app/id6753152159" class="download-btn">
+                Download Roster
+            </a>
+        </div>
     </div>
     
     <footer>
@@ -160,26 +179,85 @@
     </footer>
     
     <script>
-        // Extract user ID from URL path
+        // Extract username from URL path (graveapp.org/{username})
         const path = window.location.pathname;
-        const userId = path.split('/')[2];
+        const username = path.split('/')[1]; // Extract username from root path
         
-        console.log('Profile page for user:', userId);
+        console.log('Smart redirect for username:', username);
         
-        // Try to open the app with deep link
-        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            // Construct the app deep link
-            const appURL = `graveapp://profile/${userId}`;
-            const universalLink = `https://graveapp.org/profile/${userId}`;
-            
-            // Try universal link first (works if app is installed)
-            window.location.href = universalLink;
-            
-            // Fallback to App Store after delay
-            setTimeout(() => {
-                window.location.href = 'https://apps.apple.com/app/id6753152159';
-            }, 2000);
+        const statusTitle = document.getElementById('status-title');
+        const statusMessage = document.getElementById('status-message');
+        const manualLink = document.getElementById('manualLink');
+        
+        // App Store URL
+        const appStoreURL = 'https://apps.apple.com/app/id6753152159';
+        
+        // Construct the custom URL scheme for add friend
+        const appURL = `roster://addfriend/${username}`;
+        
+        // Detect mobile devices
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        
+        // Track if user left the page (app opened)
+        let appOpened = false;
+        let startTime = Date.now();
+        
+        // Visibility change listener to detect if app opened
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                appOpened = true;
+            }
+        });
+        
+        // Blur event (backup detection)
+        window.addEventListener('blur', () => {
+            appOpened = true;
+        });
+        
+        function attemptAppOpen() {
+            if (isIOS) {
+                // Try to open the app
+                window.location.href = appURL;
+                
+                // Check after 1.5 seconds if app opened
+                setTimeout(() => {
+                    const timePassed = Date.now() - startTime;
+                    
+                    // If user is still here after 1.5s and page is visible, app probably didn't open
+                    if (!appOpened && !document.hidden && timePassed > 1500) {
+                        statusTitle.textContent = "App not installed?";
+                        statusMessage.textContent = "Redirecting to App Store...";
+                        
+                        // Redirect to App Store
+                        setTimeout(() => {
+                            window.location.href = appStoreURL;
+                        }, 800);
+                    }
+                }, 1500);
+                
+                // Show manual link after 3 seconds as fallback
+                setTimeout(() => {
+                    if (!appOpened) {
+                        manualLink.style.display = 'block';
+                    }
+                }, 3000);
+                
+            } else if (isMobile) {
+                // Android or other mobile - go straight to a web page or store
+                statusTitle.textContent = "Download Roster";
+                statusMessage.textContent = "Available on iOS";
+                manualLink.style.display = 'block';
+            } else {
+                // Desktop - show download option
+                statusTitle.textContent = "Roster is a mobile app";
+                statusMessage.textContent = "Scan this link on your iPhone to add your friend!";
+                manualLink.style.display = 'block';
+            }
         }
+        
+        // Start the redirect process immediately
+        attemptAppOpen();
     </script>
 </body>
 </html>

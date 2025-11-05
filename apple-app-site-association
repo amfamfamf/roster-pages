@@ -5,7 +5,13 @@
       {
         "appID": "LEVKRL82N2.com.alexfong.roster",
         "paths": [
-          "/profile/*"
+          "/*",
+          "!/privacy",
+          "!/support",
+          "!/og-image*",
+          "!/index.html",
+          "!/404.html",
+          "!/robots.txt"
         ]
       }
     ]
